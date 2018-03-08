@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}My Django website{% endblock %}
+
+{% block content %}
+<h1>Contains: </h1>
+  <nav>
+    <ul>
+	     <li><a href="/users_dashboard/contenido_html">Link 1: html</a></li>
+	     <li><a href="/users_dashboard/un_texto_plano/">Link 2: text</a></li>
+	     <li><a href="/users_dashboard/una_imagen">Link 3: Image</a></li>
+       <li><a href="/users_dashboard/este_texto_plano/<text>">Link 4: text anything</a></li>
+    </ul>
+  </nav>
+{% endblock %}
