@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'recipes_dashboard',
 
-    'django_mongoengine',
+    #'django_mongoengine',
     #'bootstrap4',
 ]
 
@@ -92,33 +92,34 @@ WSGI_APPLICATION = 'my_website.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django_mongodb_engine',
-        'NAME': 'mongodb',
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'ENGINE': 'django_mongodb_engine',
+        #'NAME': 'mongodb',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     #}
-        'USER': 'devadmin',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '27017',
+        #'USER': 'devadmin',
+        #'PASSWORD': 'password',
+        #'HOST': 'localhost',
+        #'PORT': '27017',
         #'SUPPORTS_TRANSACTIONS': False,
-    },
+    }
 }
-SESSION_ENGINE = 'mongoengine.django.sessions'
+#SESSION_ENGINE = 'mongoengine.django.sessions'
 
-_MONGODB_USER = 'devadmin'#mongouser
-_MONGODB_PASSWD = 'password'
-_MONGODB_HOST = 'localhost:27017'
-_MONGODB_NAME = 'mongodb'
-_MONGODB_DATABASE_HOST = \
-    'mongodb://%s:%s@%s/%s' \
-    % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_NAME)
+#_MONGODB_USER = 'devadmin'#mongouser
+#_MONGODB_PASSWD = 'password'
+#_MONGODB_HOST = 'localhost:27017'
+#_MONGODB_NAME = 'mongodb'
+#_MONGODB_DATABASE_HOST = \
+#    'mongodb://%s:%s@%s/%s' \
+#    % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_NAME)
 
-mongoengine.connect(_MONGODB_NAME, host=_MONGODB_DATABASE_HOST)
+#mongoengine.connect(_MONGODB_NAME, host=_MONGODB_DATABASE_HOST)
 
-AUTHENTICATION_BACKENDS = (
-    'mongoengine.django.auth.MongoEngineBackend',
-)
+#AUTHENTICATION_BACKENDS = (
+#    'mongoengine.django.auth.MongoEngineBackend',
+#)
+
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 

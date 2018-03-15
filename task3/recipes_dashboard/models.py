@@ -15,7 +15,7 @@ import datetime
 
 # BD fotos, en servicio mongodb
 #connect('mongodb', host='localhost', port=27017)
-mongoengine.connect('mongodb',host='localhost:27017')
+connect('recipes',host='mongodb', port=27017)
 class Recipe(Document):
 	name = StringField(required=True, max_lenght=60)
 	posted = DateTimeField(default=datetime.datetime.now)
