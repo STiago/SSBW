@@ -1,4 +1,4 @@
-FROM python:3
+FROM contraslash/alpine-pillow
  ENV PYTHONUNBUFFERED 1
  RUN mkdir /code
  WORKDIR /code

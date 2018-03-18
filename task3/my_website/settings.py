@@ -45,16 +45,16 @@ INSTALLED_APPS = [
     #'bootstrap4',
 ]
 
-AUTH_USER_MODEL = 'mongo_auth.MongoUser'
+#AUTH_USER_MODEL = 'mongo_auth.MongoUser'
 
-AUTHENTICATION_BACKENDS = (
-    'django_mongoengine.mongo_auth.backends.MongoEngineBackend',
-)
+#AUTHENTICATION_BACKENDS = (
+#    'django_mongoengine.mongo_auth.backends.MongoEngineBackend',
+#)
 
-SESSION_ENGINE = 'django_mongoengine.sessions'
+#SESSION_ENGINE = 'django_mongoengine.sessions'
 
 
-INTERNAL_IPS = ('127.0.0.1', '10.0.2.2',)
+#INTERNAL_IPS = ('127.0.0.1', '10.0.2.2',)
 
 
 MIDDLEWARE = [
