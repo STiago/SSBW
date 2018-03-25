@@ -14,12 +14,11 @@ import datetime
  	photo = models.CharField(max_length=500)"""
 
 # BD fotos, en servicio mongodb
-#connect('mongodb', host='localhost', port=27017)
 connect('recipes',host='mongodb', port=27017)
 class Recipe(Document):
 	name = StringField(required=True, max_lenght=60)
 	posted = DateTimeField(default=datetime.datetime.now)
-	ingredients = ListField(StringField())
+	tags = ListField(StringField())
 	likes_up = IntField(min_value=0)
 	likes_down = IntField(min_value=0)
 	photo_file = ImageField()

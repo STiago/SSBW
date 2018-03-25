@@ -1,21 +1,20 @@
 # populate.py
-from models import Recipe
+from recipes_dashboard.models import Recipe
 from mongoengine import *
 
-conect('recipes', host='mongodb', port=27017)
+connect('recipes', host='mongodb', port=27017)
 
-photo_file = open('logo.png', 'rb')
+photo_file = open('static/images/starters/ensalada.jpg', 'rb')
 
-recipe = Recipe(name="albaicin", ingredients=['albaicin', 'granada'], likes_up=2, photo_file=photo_file)
+recipe = Recipe(name="ensalada", tags=['ensalada', 'starters', 'granada'], likes_up=4, photo_file=photo_file)
 recipe.save()
 
-#...
 
-for f in Recipes.objects():  # todos los registros
-	print(f.name, ' ', f.ingredients, f.likes_up, ' ')
-	#archi = f.photo_file
-	#if (archi):
-		#im = archi.read()
-		#g = open('desde_bd_'+f.name+'.jpg', wb)
-		#g.write(im)
-		#g.close()
+for f in Recipe.objects():  # todos los registros
+	print(f.name, ' ', f.tags, f.likes_up, ' ')
+	archi = f.photo_file
+	if (archi):
+		im = archi.read()
+		g = open('db/'+'desde_bd_'+f.name+'.jpg', 'wb')
+		g.write(im)
+		g.close()
