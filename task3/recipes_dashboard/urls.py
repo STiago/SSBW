@@ -10,5 +10,7 @@ urlpatterns = [
   url('una_imagen/$', views.contenido_imagen, name='contenido_imagen'),
   path('este_texto_plano/<text>', views.cualquier_contenido, name='cualquier_contenido'),
   url('signin', views.signin, name="signin"),
-  url('signup', views.signup, name="signup")
+  url('signup', views.signup, name="signup"),
+  path('search_by_tag',views.search_by_tag,name='search_by_tag'),
+  path('get_recipe_image/<id>',views.get_recipe_image,name='get_recipe_image')
 ]
