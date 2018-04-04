@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <style>
+  .grid-container {
+    display: grid;
+    grid-gap: 40px;
+    grid-template-columns: auto auto auto;
+    background-color: LightGray;
+    padding: 10px;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    text-align: center;
+  }
+  </style>
+
+  <h1>Welcome to my site!</h1>
+  
+  <div id="photo_list">
+    List of {{ number_of_results }} recipes <br/><br/>    <div class="grid-container">
+    {% for photo_recipe in photo_list %}
+      <div class="grid-item">
+      <img src="{% url 'get_recipe_image' photo_recipe.id %}" witdh="220px" height="220px"/>
+        <ul>
+         <li>Name: {{photo_recipe.name}}</li>
+         <li>{{photo_recipe.posted}}</li>
+         <li>Likes up: {{photo_recipe.likes_up}}</li>
+         <li>Likes down: {{photo_recipe.likes_down}}</li>
+         <li>Tags: {{ photo_recipe.tags}}</li>
+        </ul>
+      </div>
+      {% endfor %}
+      <br/>
+    </div>
+  </div>
+
+{% endblock content %}
