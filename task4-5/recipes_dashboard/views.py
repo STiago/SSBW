@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
 from django.template import RequestContext
 from populate import *
 from . import models
 from .forms import RecipeForm
 from .models import Recipe
+from django.http import Http404
 
 
 def contenido_texto_plano(request):
@@ -77,7 +77,6 @@ def add_recipe(request):
         if form.is_valid():
             print(form)
             print("after form")
-            #instance = form.cleaned_data
             form_tags=request.POST['tags']
             model_tags = form_tags.split(',')
             instance = Recipe(photo_file=request.FILES['image'], name=request.POST['name'], tags=model_tags)
@@ -87,8 +86,47 @@ def add_recipe(request):
             #return redirect('../templates/add_recipe.html')
     else:
         form = RecipeForm()
-        # GET o error
     context = {
 		'form': form,
         }
     return render(request, '../templates/add_recipe.html', context)
+
+
+def update_recipe(request, id):
+    #last_form = get_object_or_404(Recipe, id=id)
+    last_form = Recipe.objects.get(id=id)
+    if request.method == "GET":
+        #context = {
+        #    'id':id,
+            #'form': last_form
+        #}
+        #return redirect('update_recipe')
+        return render(request, '../templates/update_recipe.html')#{'form': last_form})
+    if request.method == "GET":
+        n_form = RecipeForm(request.POST, last_form=last_form)
+        if n_form.is_valid():
+            print("entra ifffffffffffffffffffffffff")
+            #last_form = n_form.save()
+            name = request.POST.get('name')
+            tags = request.POST.get('tags')
+            image = request.POST.get('image')
+            last_form.tags = name
+            last_form.tags = tags
+            last_form.photo_file = image
+            last_form.save()
+            return redirect('home')
+    else:
+        print("entra elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+        n_form = RecipeForm()
+    return render_to_response('../templates/home.html')#, locals(), context_instance=RequestContext(request))
+
+
+    """form = MyForm(request.POST or None, instance=instance)
+        if form.is_valid():
+              form.save()
+              return redirect('next_view')
+    return direct_to_template(request, 'my_template.html', {'form': form}) """
+
+
+    def delete_recipe(request):
+        return render(request, '../templates/add_recipe.html', context)

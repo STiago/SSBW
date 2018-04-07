@@ -13,6 +13,8 @@ urlpatterns = [
   url('signup', views.signup, name="signup"),
   path('search_by_tag',views.search_by_tag,name='search_by_tag'),
   path('get_recipe_image/<id>',views.get_recipe_image,name='get_recipe_image'),
-  path('add_recipe',views.add_recipe,name='add_recipe')
-
+  path('add_recipe',views.add_recipe,name='add_recipe'),
+  path('update_recipe',views.update_recipe,name='update_recipe'),
+  url(r'^update_recipe/(?P<id>[0-9a-f]+)/$',views.update_recipe,name='update_recipe')
+  #path('update_recipe/(?P<id>[0-9a-f]+)/$',views.update_recipe,name='update_recipe')
 ]
