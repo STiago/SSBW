@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.template import RequestContext
 from populate import *
 from . import models
 from .forms import RecipeForm
 from .models import Recipe
-from django.http import Http404
+
 
 
 def contenido_texto_plano(request):
@@ -94,16 +94,13 @@ def add_recipe(request):
 
 def update_recipe(request, id):
     #last_form = get_object_or_404(Recipe, id=id)
-    last_form = Recipe.objects.get(id=id)
+    last_form = get_object_or_404(Recipe.objects.only('id', 'name', 'tags', 'photo_file'), id=id)
+    print(last_form.photo_file, last_form.name)
     if request.method == "GET":
-        #context = {
-        #    'id':id,
-            #'form': last_form
-        #}
-        #return redirect('update_recipe')
-        return render(request, '../templates/update_recipe.html')#{'form': last_form})
-    if request.method == "GET":
-        n_form = RecipeForm(request.POST, last_form=last_form)
+        return render(request, '../templates/update_recipe.html', {'form': last_form})
+
+    """if request.method == "POST":
+        n_form = RecipeForm(request.POST)#, last_form=last_form)
         if n_form.is_valid():
             print("entra ifffffffffffffffffffffffff")
             #last_form = n_form.save()
@@ -117,7 +114,7 @@ def update_recipe(request, id):
             return redirect('home')
     else:
         print("entra elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
-        n_form = RecipeForm()
+        n_form = RecipeForm()"""
     return render_to_response('../templates/home.html')#, locals(), context_instance=RequestContext(request))
 
 
