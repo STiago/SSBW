@@ -70,6 +70,20 @@ def handler500(request):
     return response
 
 
+def show_recipe(request, id):
+    obj = Recipe.objects.get(id=id)
+    if request.method == "GET":
+        context = {
+            'id': id,
+            'name': obj.name,
+            'tags': obj.tags,
+            'posted': obj.posted,
+            'likes_up': obj.likes_up,
+            'likes_down': obj.likes_down,
+        }
+        return render(request, '../templates/show_recipe.html', {'detail': context})
+
+
 def add_recipe(request):
     form = RecipeForm()
     if request.method=='POST':
@@ -82,8 +96,6 @@ def add_recipe(request):
             instance = Recipe(photo_file=request.FILES['image'], name=request.POST['name'], tags=model_tags)
             print(instance)
             instance.save()
-            #return HttpResponseRedirect('../templates/add_recipe.html')
-            #return redirect('../templates/add_recipe.html')
     else:
         form = RecipeForm()
     context = {
@@ -93,29 +105,32 @@ def add_recipe(request):
 
 
 def update_recipe(request, id):
-    #last_form = get_object_or_404(Recipe, id=id)
+    #last_form = Recipe.objects.get(id=id)
+    #image = obj.photo_file.read()
     last_form = get_object_or_404(Recipe.objects.only('id', 'name', 'tags', 'photo_file'), id=id)
     print(last_form.photo_file, last_form.name)
     if request.method == "GET":
         return render(request, '../templates/update_recipe.html', {'form': last_form})
 
-    """if request.method == "POST":
-        n_form = RecipeForm(request.POST)#, last_form=last_form)
+    if request.method == "POST":
+        n_form = last_form#RecipeForm(request.POST, request.FILES, id=id)#, instance=last_form)
+        print(n_form)
         if n_form.is_valid():
             print("entra ifffffffffffffffffffffffff")
             #last_form = n_form.save()
+            """n_form.save()
             name = request.POST.get('name')
             tags = request.POST.get('tags')
             image = request.POST.get('image')
-            last_form.tags = name
+            last_form.name = name
             last_form.tags = tags
             last_form.photo_file = image
             last_form.save()
-            return redirect('home')
+            return redirect('home')"""
     else:
         print("entra elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
-        n_form = RecipeForm()"""
-    return render_to_response('../templates/home.html')#, locals(), context_instance=RequestContext(request))
+        #n_form = RecipeForm()
+    #return render_to_response('../templates/home.html', locals(), context_instance=RequestContext(request))
 
 
     """form = MyForm(request.POST or None, instance=instance)

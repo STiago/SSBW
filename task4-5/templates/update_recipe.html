@@ -18,8 +18,8 @@
                   <input id="tags" name="tags" class="form-control"  type="text" value="{{ form.tags }}" >
                 </div>
                 <div class="form-group">
-									<label for="image">Image: </label>
-									<p>Current image file: {{form.photo_file}}</p>
+									<label for="image">Current image file: </label>
+									<img src="{% url 'get_recipe_image' form.id %}" witdh="150px" height="150px"/>
 									<input type="file" name="image" value="{{form.image}}" accept="image/*">
                 </div>
                 <div class="form-submit">
