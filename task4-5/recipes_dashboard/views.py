@@ -118,19 +118,19 @@ def update_recipe(request, id):
         if n_form.is_valid():
             print("entra ifffffffffffffffffffffffff")
             #last_form = n_form.save()
-            """n_form.save()
-            name = request.POST.get('name')
+            n_form.save()
+            """name = request.POST.get('name')
             tags = request.POST.get('tags')
             image = request.POST.get('image')
             last_form.name = name
             last_form.tags = tags
             last_form.photo_file = image
-            last_form.save()
-            return redirect('home')"""
+            last_form.save()"""
+            return redirect('home')
     else:
         print("entra elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
-        #n_form = RecipeForm()
-    #return render_to_response('../templates/home.html', locals(), context_instance=RequestContext(request))
+        n_form = RecipeForm()
+    return render_to_response('../templates/home.html', locals(), context_instance=RequestContext(request))
 
 
     """form = MyForm(request.POST or None, instance=instance)
@@ -140,5 +140,7 @@ def update_recipe(request, id):
     return direct_to_template(request, 'my_template.html', {'form': form}) """
 
 
-    def delete_recipe(request):
-        return render(request, '../templates/add_recipe.html', context)
+    def delete_recipe(request,id):
+        instance = Recipe.objects.get(id=id)
+        instance.delete()
+        return redirect('../templates/add_recipe.html')

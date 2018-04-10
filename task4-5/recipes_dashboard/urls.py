@@ -16,6 +16,7 @@ urlpatterns = [
   url(r'^show_recipe/(?P<id>[0-9a-f]+)/$',views.show_recipe,name='show_recipe'),
   path('add_recipe',views.add_recipe,name='add_recipe'),
   path('update_recipe',views.update_recipe,name='update_recipe'),
-  url(r'^update_recipe/(?P<id>[0-9a-f]+)/$',views.update_recipe,name='update_recipe')
+  url(r'^update_recipe/(?P<id>[0-9a-f]+)/$',views.update_recipe,name='update_recipe'),
+  url(r'^delete_recipe/(?P<id>[0-9a-f]+)/$',views.delete_recipe,name='delete_recipe')
   #path('update_recipe/(?P<id>[0-9a-f]+)/$',views.update_recipe,name='update_recipe')
 ]
