@@ -89,13 +89,11 @@ def add_recipe(request):
     if request.method=='POST':
         form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
-            print(form)
-            print("after form")
             form_tags=request.POST['tags']
             model_tags = form_tags.split(',')
             instance = Recipe(photo_file=request.FILES['image'], name=request.POST['name'], tags=model_tags)
-            print(instance)
             instance.save()
+            return redirect('home')
     else:
         form = RecipeForm()
     context = {
@@ -110,17 +108,15 @@ def update_recipe(request, id):
         n_form = RecipeForm(request.POST, request.FILES, last_form)
         if n_form.is_valid():
             post = n_form.saved()
-
             name = request.POST.get('name')
             tags = request.POST.get('tags')
             image = n_form.saved()#request.POST.get('image')
-            print(image,"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             last_form.name = name
             last_form.tags = tags.split(",")
             last_form.photo_file = image
             last_form.save()
+            return redirect('home')
     return render(request, '../templates/update_recipe.html', {'form': last_form})
-    #return render_to_response('../templates/home.html', locals(), context_instance=RequestContext(request))
 
 
     """form = MyForm(request.POST or None, instance=instance)
