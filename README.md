@@ -8,3 +8,9 @@ Software sistems based in web
 - [Persistence: MongoDb - Mongoengine](https://github.com/STiago/SSBW/tree/master/task3)
 
 - [CRUD](https://github.com/STiago/SSBW/tree/master/task4-5)
+
+- [jQuery](https://github.com/STiago/SSBW/tree/master/task7)
+
+- [Autentificación and logs](https://github.com/STiago/SSBW/tree/master/)
+
+- React
