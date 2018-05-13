@@ -110,20 +110,13 @@ def update_recipe(request, id):
             post = n_form.saved()
             name = request.POST.get('name')
             tags = request.POST.get('tags')
-            image = n_form.saved()#request.POST.get('image')
+            image = n_form.saved()
             last_form.name = name
             last_form.tags = tags.split(",")
             last_form.photo_file = image
             last_form.save()
             return redirect('home')
     return render(request, '../templates/update_recipe.html', {'form': last_form})
-
-
-    """form = MyForm(request.POST or None, instance=instance)
-        if form.is_valid():
-              form.save()
-              return redirect('next_view')
-    return direct_to_template(request, 'my_template.html', {'form': form}) """
 
 
 def delete_recipe(request,id):
