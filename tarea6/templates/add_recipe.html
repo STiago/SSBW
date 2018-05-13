@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+	<div class="col-6">
+		<form action="{% url 'add_recipe' %}" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+					<fieldset>
+              <legend id="legend-type">Create a new recipe</legend>
+              <div id="form-elements">
+                <div class="form-group">
+                  <label for="unix_id">Name:  </label>
+                  <input id="name" name="name" placeholder="name" class="form-control"  type="text" value="{{ name }}" required>
+                </div>
+                <div class="form-group">
+                  <label for="db_username">Tags:  </label>
+                  <input id="tags" name="tags" placeholder="granada" class="form-control"  type="text" value="{{ tags }}" >
+                </div>
+                <div class="form-group">
+									<label for="image">Image:  </label>
+									<input type="file" name="image" accept="image/*">
+                </div>
+                <!--Advanced options
+                <div id="container-main">
+                    <div class="accordion-container">
+                      <br>
+                        <a href="#"  class="accordion-tit"><h3>Advanced options</h3><span class="toggle-icon"></span></a>
+                        <div class="accordion-content">
+
+                         <div class="form-group">
+                            <label for="ingredients" >Ingredients:  </label>
+                            <input id="ingredients" name="ingredients" placeholder="Ingredients" class="form-control"  type="text" value="{{ current_ingredient }}">
+                          </div>
+                        </div>
+                    </div>
+                </div>-->
+
+                <!-- Button -->
+                <div class="form-submit">
+                  <label class="col-md-4 control-label"></label>
+                  <div class="col-md-4">
+										<button type="submit" class="btn btn-primary">Create</button>
+
+                  </div>
+                </div>
+            </div>
+          </fieldset>
+
+
+				</form>
+			</div>
+		</div>
+		<script src="../static/js/recipes.js"></script>
+
+{% endblock content %}

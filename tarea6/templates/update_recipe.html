@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+	<div class="col-6">
+		<form action="{% url 'update_recipe' form.id %}" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+					<fieldset>
+              <legend id="legend-type">Update recipe: {{form.name}}</legend>
+							<p>ID: {{form.id}}</p>
+              <div id="form-elements">
+                <div class="form-group">
+                  <label for="unix_id">Name: </label>
+                  <input id="name" name="name" class="form-control" type="text" value="{{ form.name }}" placeholder="{{ form.name }}" required>
+                </div>
+                <div class="form-group">
+                  <label for="db_username">Tags:  </label>
+                  <input id="tags" name="tags" class="form-control"  type="text" value="{{ form.tags }}" >
+                </div>
+                <div class="form-group">
+									<label for="image">Current image file: </label>
+									<img src="{% url 'get_recipe_image' form.id %}" witdh="150px" height="150px"/>
+									<input type="file" name="image" value="{{form.image}}" accept="image/*">
+                </div>
+                <div class="form-submit">
+                  <label class="col-md-4 control-label"></label>
+                  <div class="col-md-4">
+										<button type="submit" class="btn btn-primary">Update</button>
+                  </div>
+                </div>
+            </div>
+          </fieldset>
+				</form>
+        </div>
+		</div>
+
+{% endblock content %}
