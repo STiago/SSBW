@@ -69,6 +69,9 @@ def handler500(request):
     response.status_code = 500
     return response
 
+def save_recipe():
+    print("Saved.")
+
 
 def show_recipe(request, id):
     obj = Recipe.objects.get(id=id)
@@ -140,31 +143,15 @@ def like_category(request):
 
     likes = 0
     if cat_id:
-        cat = Recipe.objects.get(id=int(cat_id))
-        if cat:
-            likes = cat.likes + 1
-            cat.likes =  likes
-            cat.save()
+        recipe = Recipe.objects.get(id=cat_id)#int(cat_id)
+        if recipe:
+            likes = recipe.likes_up + 1
+            recipe.likes =  likes
+            recipe.save()
 
     return HttpResponse(likes)
 
 
-def save_recipe(request):
-    cat_id = None
-    if request.method == 'GET':
-        cat_id = request.GET['category_id']
-        print(cat_id)
-        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-
-    likes = 0
-    if cat_id:
-        cat = Recipe.objects.get(id=int(cat_id))
-        if cat:
-            likes = cat.likes + 1
-            cat.likes =  likes
-            cat.save()
-
-    return HttpResponse(likes)
 
 #@login_required
 """def like_category(request, id):
