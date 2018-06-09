@@ -154,7 +154,7 @@ def like_category(request):
 
 
 """def like_category(request, id):
-    cat_id = id#None
+    cat_id = id
     #if request.method == 'GET':
         #cat_id = request.GET['category_id']
     likes = 0
