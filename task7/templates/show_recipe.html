@@ -50,6 +50,8 @@
            <li>Likes up: {{detail.likes_up}}</li>
            <li>Likes down: {{detail.likes_down}}</li>
            <li>Tags: {{ detail.tags}}</li><br>
+
+           <button id="save_recipe" type="button" data-catid="{{detail.id}}"><img src="/static/images/save.png" alt="save" height="25px" width="25px"></button>
            <a href="/recipes_dashboard/update_recipe/{{ detail.id }}"><img  src="/static/images/edit.ico" alt="U" witdh="30px" height="30px"></a>
            <a href="/recipes_dashboard/delete_recipe/{{ detail.id }}"><img  src="/static/images/delete1.png" alt="D" witdh="30px" height="30px"></a>
           </ul>
@@ -75,5 +77,6 @@
     </div>
   </div>-->
   <script src="/static/js/recipes.js"></script>
+  <script src="/static/js/save_recipe.js"></script>
 
 {% endblock content %}

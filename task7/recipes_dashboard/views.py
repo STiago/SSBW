@@ -69,6 +69,9 @@ def handler500(request):
     response.status_code = 500
     return response
 
+def save_recipe():
+    print("Saved.")
+
 
 def show_recipe(request, id):
     obj = Recipe.objects.get(id=id)
@@ -128,8 +131,65 @@ def delete_recipe(request,id):
 ## Practica 7 - Likes
 #from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth.decorators import login_required
+
 #@login_required
-def like_category(request, id):
+def like_category(request):
+    cat_id = None
+    if request.method == 'GET':
+        cat_id = request.GET['category_id']
+    likes = 0
+    if cat_id:
+        recipe = Recipe.objects.get(id=cat_id)#int(cat_id)
+        print(recipe.likes_up, recipe.name, recipe.tags)
+        if recipe:
+            likes = recipe.likes_up
+            if likes == None:
+                likes = 0
+            likes = likes + 1
+            recipe.likes_up =  likes
+            recipe.save()
+    #return redirect('home')
+    return HttpResponse(likes)
+
+
+"""def like_category(request, id):
+    cat_id = id#None
+    #if request.method == 'GET':
+        #cat_id = request.GET['category_id']
+    likes = 0
+    if cat_id:
+        recipe = Recipe.objects.get(id=cat_id)#int(cat_id)
+        print(recipe.likes_up, recipe.name, recipe.tags)
+        if recipe:
+            likes = recipe.likes_up
+            if likes == None:
+                likes = 0
+            likes = likes + 1
+            recipe.likes_up =  likes
+            recipe.save()
+    #return redirect('home')
+    return HttpResponse(likes)"""
+
+def like_down(request, id):
+    cat_id = id
+    likes = 0
+    if cat_id:
+        recipe = Recipe.objects.get(id=cat_id)#int(cat_id)
+        if recipe:
+            likes = recipe.likes_up
+            if likes == None:
+                likes = 0
+            likes = likes - 1
+            recipe.likes_up =  likes
+            recipe.save()
+    #return redirect('home')
+    return HttpResponse(likes)
+
+
+
+#@login_required
+"""def like_category(request, id):
     cat_id = None
     if request.method == 'GET':
         l_u = request.GET['likes_up']
@@ -143,4 +203,4 @@ def like_category(request, id):
             recipe.likes =  likes
             recipe.save()
 
-    return HttpResponse(likes)
+    return HttpResponse(likes)"""
