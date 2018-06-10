@@ -18,8 +18,8 @@ urlpatterns = [
   path('update_recipe',views.update_recipe,name='update_recipe'),
   url(r'^update_recipe/(?P<id>[0-9a-f]+)/$',views.update_recipe,name='update_recipe'),
   url(r'^delete_recipe/(?P<id>[0-9a-f]+)/$',views.delete_recipe,name='delete_recipe'),
-  url(r'^like_category/$', views.like_category, name='like_category'),
-  path('like_category', views.like_category, name='like_category'),
+  url(r'^like_up/(?P<id>[0-9a-f]+)/$', views.like_up, name='like_up'),
+  url(r'^like_down/(?P<id>[0-9a-f]+)/$', views.like_down, name='like_down'),
   path('save_recipe', views.save_recipe, name='save_recipe'),
   #path('update_recipe/(?P<id>[0-9a-f]+)/$',views.update_recipe,name='update_recipe')
 ]

@@ -1,11 +1,23 @@
-$('#likes_up').click(function(){
-    var catid;
-    catid = $(this).attr("data-catid");
-    nameid = $(this).attr("data-name");
-    alert( "+1 Like to : " + nameid);
-    $.post("like_category", {category_id: catid}, function(data){
-       $('#output').html(data);
-       $('#likes_up').hide();
-       alert( "Done.");
+$('.likes_up').click(function(){
+    var catid = $(this).attr("data-catid-up");
+    var button = $(this);
+    var like_url = "/recipes_dashboard/like_up/" + catid +"/";
+
+    $.post(like_url, {}, function(responseData){
+       var count = button.parent().find('.likes_up_count');
+       $(count).html(responseData);
+       button.hide();
+   });
+});
+
+$('.likes_down').click(function(){
+    var catid = $(this).attr("data-catid-down");
+    var button = $(this);
+    var like_url = "/recipes_dashboard/like_down/" + catid +"/";
+
+    $.post(like_url, {}, function(responseData){
+       var count = button.parent().find('.likes_down_count');
+       $(count).html(responseData);
+       button.hide();
    });
 });
