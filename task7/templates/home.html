@@ -16,33 +16,6 @@
   }
   </style>
 
-  <!--<script>
-  	/*$(function() {
-  	  var count = 0, countRate = 0, output = $('#output');
-   	  var count_down = 0, countRateDown = 0, output_down = $('#output_down');
-
-  	  setInterval(function(){ output.html(count) }, 1); // update continually
-  	  setInterval(function(){ count += countRate }, 1000); // update once-per-second
-
-  	  setInterval(function(){ output_down.html(count_down) }, 1); // update continually
-  	  setInterval(function(){ count_down -= countRateDown }, 1000); // update once-per-second
-
-  	  $('#likes_up').click(function(){ count += 1 });
-  	  $('#autoClick').click(function(){ countRate += 1 });
-
-  	  $('#likes_down').click(function(){ count_down -= 1 });
-  	  $('#autoClick').click(function(){ countRateDown -= 1 });
-  	});*/
-    $('#likes_up').click(function(){
-      var catid;
-      catid = $(this).attr("data-catid");
-      window.print(catid);
-      $.get('/recipes_dashboard/like_category/', {category_id: catid}, function(data){
-                 $('#output').html(data);
-                 $('#likes_up').hide();
-      });
-    });
-  </script>-->
 
   <h1>Homemade recipes posts</h1>
   {% csrf_token %}
@@ -54,12 +27,12 @@
         <ul>
          <li>Name: {{photo_recipe.name}}</li>
          <li>{{photo_recipe.posted}}</li>
-         <li><button class="likes_up" type="button" data-catid="{{photo_recipe.id}}" data-name="{{photo_recipe.name}}"><img src="../static/images/like_up.png" alt="Up" height="20px" width="20px"></button>
-         <div class="likes_up_count">{{photo_recipe.likes_up}}</div>
-         <button id="likes_down"><img src="../static/images/like_down.png" alt="Down" height="20px" width="20px"></button>
-         <div id="output_down">{{photo_recipe.likes_down}}</div></li>
-         <!--<li>Likes up: {{photo_recipe.likes_up}}</li>
-         <li>Likes down: {{photo_recipe.likes_down}}</li>-->
+         <li>
+           <button class="likes_up" type="button" data-catid-up="{{photo_recipe.id}}"><img src="../static/images/like_up.png" alt="Up" height="20px" width="20px"></button>
+           <div class="likes_up_count">{{photo_recipe.likes_up}}</div>
+           <button class="likes_down" data-catid-down="{{photo_recipe.id}}"><img src="../static/images/like_down.png" alt="Down" height="20px" width="20px"></button>
+           <div class="likes_down_count">{{photo_recipe.likes_down}}</div>
+         </li>
          <li>Tags: {{ photo_recipe.tags}}</li><br>
          <a href="/recipes_dashboard/show_recipe/{{ photo_recipe.id }}"><img  src="../static/images/show2.png" alt="V" witdh="40px" height="40px"></a>
          <a href="/recipes_dashboard/update_recipe/{{ photo_recipe.id }}"><img  src="../static/images/edit.ico" alt="U" witdh="30px" height="30px"></a>

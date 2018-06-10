@@ -5,7 +5,7 @@ from populate import *
 from . import models
 from .forms import RecipeForm
 from .models import Recipe
-
+from django.views.decorators.csrf import csrf_exempt,csrf_protect
 
 
 def contenido_texto_plano(request):
@@ -15,7 +15,7 @@ def contenido_html(request):
     return render(request, '../templates/index.html')
 
 def contenido_imagen(request):
-    #return render(request, '../templates/otro.html') #tambien se puede retornar una imagen en un html
+    #return render(request, '../templates/otro.html') #return a picture inside html 
     valid_image = "static/images/image.png"
     with open(valid_image, "rb") as f:
         return HttpResponse(f.read(), content_type="image/png")
@@ -23,7 +23,7 @@ def contenido_imagen(request):
 def cualquier_contenido(request,text):
     return HttpResponse("Tenemos este texto plano introducido en la url:  %s" % text)
 
-####
+
 def home(request):
     photo_list = Recipe.objects().order_by('-posted')
     context = {
@@ -73,6 +73,7 @@ def save_recipe():
     print("Saved.")
 
 
+# Task 6 - CRUD
 def show_recipe(request, id):
     obj = Recipe.objects.get(id=id)
     if request.method == "GET":
@@ -128,13 +129,41 @@ def delete_recipe(request,id):
     return redirect('home')
 
 
-## Practica 7 - Likes
-#from django.contrib.auth.decorators import login_required
+## Task 7 - Likes up and down
+@csrf_exempt
+def like_up(request, id):
+    cat_id = id
+    likes = 0
+    if cat_id:
+        recipe = Recipe.objects.get(id=cat_id)
+        if recipe:
+            likes = recipe.likes_up
+            if likes == None:
+                likes = 0
+            likes = likes + 1
+            recipe.likes_up =  likes
+            recipe.save()
+    return HttpResponse(likes)
 
-from django.contrib.auth.decorators import login_required
+@csrf_exempt
+def like_down(request, id):
+    cat_id = id
+    likes = 0
+    if cat_id:
+        recipe = Recipe.objects.get(id=cat_id)
+        if recipe:
+            likes = recipe.likes_down
+            if likes == None:
+                likes = 0
+            likes = likes + 1
+            recipe.likes_down =  likes
+            recipe.save()
+    return HttpResponse(likes)
 
-#@login_required
-def like_category(request):
+
+
+#with get, bad way
+"""def like_category(request):
     cat_id = None
     if request.method == 'GET':
         cat_id = request.GET['category_id']
@@ -150,57 +179,4 @@ def like_category(request):
             recipe.likes_up =  likes
             recipe.save()
     #return redirect('home')
-    return HttpResponse(likes)
-
-
-"""def like_category(request, id):
-    cat_id = id
-    #if request.method == 'GET':
-        #cat_id = request.GET['category_id']
-    likes = 0
-    if cat_id:
-        recipe = Recipe.objects.get(id=cat_id)#int(cat_id)
-        print(recipe.likes_up, recipe.name, recipe.tags)
-        if recipe:
-            likes = recipe.likes_up
-            if likes == None:
-                likes = 0
-            likes = likes + 1
-            recipe.likes_up =  likes
-            recipe.save()
-    #return redirect('home')
-    return HttpResponse(likes)"""
-
-def like_down(request, id):
-    cat_id = id
-    likes = 0
-    if cat_id:
-        recipe = Recipe.objects.get(id=cat_id)#int(cat_id)
-        if recipe:
-            likes = recipe.likes_up
-            if likes == None:
-                likes = 0
-            likes = likes - 1
-            recipe.likes_up =  likes
-            recipe.save()
-    #return redirect('home')
-    return HttpResponse(likes)
-
-
-
-#@login_required
-"""def like_category(request, id):
-    cat_id = None
-    if request.method == 'GET':
-        l_u = request.GET['likes_up']
-        l_d = request.GET['likes_down']
-
-    likes = 0
-    if l_u:
-        recipe = Recipe.objects.get(id=id)
-        if recipe:
-            likes = recipe.likes_up + 1
-            recipe.likes =  likes
-            recipe.save()
-
     return HttpResponse(likes)"""
