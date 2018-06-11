@@ -35,7 +35,7 @@ def home(request):
         'photo_list': photo_list,
         'number_of_results': len(photo_list),
     }
-    logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - home page.")
+    logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - Home page.")
     return render(request, "../templates/home.html", context)
 
 def signin(request):
@@ -91,7 +91,7 @@ def show_recipe(request, id):
             'likes_up': obj.likes_up,
             'likes_down': obj.likes_down,
         }
-        logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') +" - show recipe.")
+        logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') +" - Show recipe.")
         return render(request, '../templates/show_recipe.html', {'detail': context})
 
 
@@ -104,8 +104,8 @@ def add_recipe(request):
             model_tags = form_tags.split(',')
             instance = Recipe(photo_file=request.FILES['image'], name=request.POST['name'], tags=model_tags)
             instance.save()
-            return redirect('home')
             logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - New recipe added.")
+            return redirect('home')
         else:
             logger.error(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' - Something went wrong and we could not add a new recipe.')
     else:
