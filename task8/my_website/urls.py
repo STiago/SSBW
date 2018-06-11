@@ -24,6 +24,7 @@ class MyRegistrationView(RegistrationView):#
         return '/'#
 
 urlpatterns = [
+    path('', include('recipes_dashboard.urls')),
     path('admin/', admin.site.urls),
 	path('recipes_dashboard/', include('recipes_dashboard.urls')),
 ]
