@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'recipes_dashboard',
+    'django.contrib.sites',#new
+    'allauth', # new
+    'allauth.account', # new
+    'allauth.socialaccount', # new
+    'allauth.socialaccount.providers.github',# new
     #'registration',
 
     #'django_mongoengine',
@@ -48,9 +53,13 @@ INSTALLED_APPS = [
 
 #AUTH_USER_MODEL = 'mongo_auth.MongoUser'
 
-#AUTHENTICATION_BACKENDS = (
-#    'django_mongoengine.mongo_auth.backends.MongoEngineBackend',
-#)
+AUTHENTICATION_BACKENDS = (# new
+    #'django_mongoengine.mongo_auth.backends.MongoEngineBackend',# new
+    "django.contrib.auth.backends.ModelBackend",# new
+    "allauth.account.auth_backends.AuthenticationBackend"# new
+)# new
+SITE_ID = 1# new
+LOGIN_REDIRECT_URL = 'home'# new
 
 #SESSION_ENGINE = 'django_mongoengine.sessions'
 

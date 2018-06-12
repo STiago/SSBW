@@ -2,7 +2,7 @@
 
 {% block title %}Recipes{% endblock %}
 {% block content %}
-<form action="action_signin" style="border:1px solid #ccc">
+<form action="action_signin" method="post" style="border:1px solid #ccc">
  <div class="imgcontainer" style="text-align: center;">
 	 <img src="/static/images/logo.png" alt="Avatar" class="avatar">
  </div>
@@ -12,10 +12,10 @@
 
    <ul>
       <li><label style="text-align: center;" for="uname"><b>Username</b></label>
-      	  <input style="text-align: center;" type="text" placeholder="Enter Username" name="uname" required></li>
+      	  <input id="userlogin" style="text-align: center;" type="text" placeholder="Enter Username" name="uname" required></li>
 
       <li><label for="psw"><b>Password</b></label>
-      	  <input type="password" placeholder="Enter Password" name="psw" required></li><br>
+      	  <input id="userpsw" type="password" placeholder="Enter Password" name="psw" required></li><br>
 
 	 <button type="submit">Login</button>
 	 <label>

@@ -3,7 +3,7 @@ version: '3'
 services:
     web:
         build: .
-        command: python3 manage.py runserver 0.0.0.0:8000
+        command: bash -c "/bin/sleep 5 && python3 manage.py runserver 0.0.0.0:8000"
         volumes:
             - .:/code
         ports:
@@ -21,3 +21,13 @@ services:
         volumes:
           - ./data/db:/data/db
         tty: true
+    nginx:
+        image: nginx:alpine
+        ports:
+          - "80:80"
+          - "443:443"
+        volumes:
+          - ./conf:/etc/nginx/conf.d:ro
+          - ./cert:/etc/ssl/private:ro
+        depends_on:
+          - web

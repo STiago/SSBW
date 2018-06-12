@@ -9,6 +9,8 @@ from django.views.decorators.csrf import csrf_exempt,csrf_protect
 from django.contrib.auth.decorators import login_required
 import logging
 import datetime
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
 # Task 8 - Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -39,9 +41,28 @@ def home(request):
     return render(request, "../templates/home.html", context)
 
 def signin(request):
-    return render(request, '../templates/login.html')
+    try:
+        if request.method == "POST" :
+            print("inside POST")
+            user_name = request.POST.get('userlogin')
+            print(user_name)
+            user_psw = request.POST.get('userpsw')
+            us = User.objects.get(username=user_name)
+            ps = User.objects.get(password=user_psw)
+            print(us,ps)
+        logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - Sign in: " + username)
+        return render(request, "../templates/home.html")
+    except:
+        logger.error(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' - Username or password is not valid .')
+        return render(request, '../templates/login.html')
 
 def signup(request):
+    #user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+    #user.last_name = 'Lennon'
+    #user.save()
+    u = User.objects.get(username='john')
+    print(u)
+    logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - Sign up.")
     return render(request, '../templates/register.html')
 
 
@@ -94,7 +115,7 @@ def show_recipe(request, id):
         logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') +" - Show recipe.")
         return render(request, '../templates/show_recipe.html', {'detail': context})
 
-
+@login_required
 def add_recipe(request):
     form = RecipeForm()
     if request.method=='POST':
@@ -115,7 +136,7 @@ def add_recipe(request):
         }
     return render(request, '../templates/add_recipe.html', context)
 
-
+@login_required
 def update_recipe(request, id):
     last_form = get_object_or_404(Recipe.objects.only('id', 'name', 'tags', 'photo_file'), id=id)
     if request.method == "POST":
@@ -135,7 +156,7 @@ def update_recipe(request, id):
             logger.error(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' - Something went wrong and we could not update it.')
     return render(request, '../templates/update_recipe.html', {'form': last_form})
 
-
+@login_required
 def delete_recipe(request,id):
     instance = Recipe.objects.get(id=id)
     instance.delete()
