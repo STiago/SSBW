@@ -15,6 +15,11 @@ from django.contrib.auth import authenticate, login
 # Task 8 - Get an instance of a logger
 logger = logging.getLogger(__name__)
 
+from django.views.generic import TemplateView
+
+class Home(TemplateView):
+    template_name = 'home.html'
+
 def contenido_texto_plano(request):
     return HttpResponse("Esto es el contenido de texto plano.")
 
@@ -40,30 +45,45 @@ def home(request):
     logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - Home page.")
     return render(request, "../templates/home.html", context)
 
+@csrf_exempt
 def signin(request):
+    user_name = ''
+    photo_list = Recipe.objects().order_by('-posted')
     try:
         if request.method == "POST" :
-            print("inside POST")
             user_name = request.POST.get('userlogin')
-            print(user_name)
             user_psw = request.POST.get('userpsw')
-            us = User.objects.get(username=user_name)
-            ps = User.objects.get(password=user_psw)
-            print(us,ps)
-        logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - Sign in: " + username)
-        return render(request, "../templates/home.html")
+            u = User.objects.get(username=user_name)
+            print(u,"uuuuuuuuuuuuuuuuuuuuuuuuuuuu")
+            #p = User.objects.get(password=user_psw)
+            context = {
+                'photo_list': photo_list,
+                'number_of_results': len(photo_list),
+                'name': user_name,
+            }
+        logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - Sign in: " + user_name)
+        return render(request, "../templates/home.html", context)
     except:
         logger.error(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' - Username or password is not valid .')
         return render(request, '../templates/login.html')
 
+
+@csrf_exempt
 def signup(request):
-    #user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-    #user.last_name = 'Lennon'
-    #user.save()
-    u = User.objects.get(username='john')
-    print(u)
-    logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - Sign up.")
-    return render(request, '../templates/register.html')
+    try:
+        if request.method == "POST" :
+            user_name = request.POST.get('username')
+            user_psw = request.POST.get('userpsw')
+            user_email = request.POST.get('email')
+            user = User.objects.create_user(user_name, user_email, user_psw)
+            user.first_name = user_name
+            user.save()
+        logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - Sign up: " + user_name)
+        return render(request, '../templates/login.html')
+    except:
+        logger.error(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' - Username or password is not valid .')
+        return render(request, '../templates/register.html')
+
 
 
 def get_recipe_image(request, id):

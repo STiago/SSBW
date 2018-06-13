@@ -2,6 +2,8 @@ from django.conf.urls import url
 from django.urls import path
 from . import views
 
+from django.urls import include
+
 urlpatterns = [
   url(r'^$', views.home, name='home'),
   url('contenido_html/$', views.contenido_html, name='contenido_html'),
@@ -21,5 +23,7 @@ urlpatterns = [
   url(r'^like_up/(?P<id>[0-9a-f]+)/$', views.like_up, name='like_up'),
   url(r'^like_down/(?P<id>[0-9a-f]+)/$', views.like_down, name='like_down'),
   path('save_recipe', views.save_recipe, name='save_recipe'),
+  path('accounts/', include('allauth.urls')),
+  path('', views.Home.as_view(), name='home'),
   #path('update_recipe/(?P<id>[0-9a-f]+)/$',views.update_recipe,name='update_recipe')
 ]

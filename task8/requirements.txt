@@ -5,5 +5,4 @@ Pillow==5.0.0
 django-registration-redux==1.6
 djangorestframework==3.6.3
 django-rest-framework-mongoengine==3.3.1
-django-allauth
 django-allauth==0.32.0

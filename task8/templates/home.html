@@ -17,7 +17,17 @@
   </style>
 
 
-  <h1>Homemade recipes posts</h1>
+  <h1>Homemade recipes posts {{ name }}</h1>
+
+  {% load socialaccount %}
+
+  <h2>Django Allauth:</h2>
+  {% if user.is_authenticated %}
+  <p>Welcome {{ user.username }} !!!</p>
+  {% else %}
+  <a href="{% provider_login_url 'github' %}">Sign Up</a>
+  {% endif %}
+
   {% csrf_token %}
   <div id="photo_list">
     List of {{ number_of_results }} recipes <br/><br/>    <div class="grid-container">

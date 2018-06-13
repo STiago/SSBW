@@ -2,18 +2,21 @@
 
 {% block title %}Recipes{% endblock %}
 {% block content %}
-<form action="action_signup" style="border:1px solid #ccc; text-align: center;">
+<form action="action_signup" method="post" style="border:1px solid #ccc; text-align: center;">
  <div class="container" style="text-align: center;">
    <h1>Sign Up</h1>
    <p>Please fill in this form to create an account.</p>
    <hr>
 
    <ul>
+      <li><label style="text-align: center;" for="uname"><b>Username</b></label>
+         <input id="username" style="text-align: center;" type="text" placeholder="Enter Username" name="username" required></li>
+
       <li><label for="email"><b>Email</b></label>
-          <input type="text" placeholder="Enter Email" name="email" required></li>
+          <input id="email" type="text" placeholder="Enter Email" name="email" required></li>
 
       <li><label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" required></li>
+          <input id="userpsw" type="password" placeholder="Enter Password" name="userpsw" required></li>
 
       <li><label for="psw-repeat"><b>Repeat Password</b></label>
           <input type="password" placeholder="Repeat Password" name="psw-repeat" required></li>

@@ -18,32 +18,14 @@
 </head>
 
 <body>
-  <!--<div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-2">
-      {% block sidebars %}
-      <ul class="sidebar-nav">
-          <li><a href="/users_dashboard/">Home</a></li>
-          <li><a href="/admin/">Admin</a></li>
-          <li><a href="">All authors</a></li>
-      </ul>
-     {% endblock %}
-      </div>
-      <div class="col-sm-10 ">
-      {% block contentd %}{% endblock %}
-      </div>
-    </div>
-  </div>-->
   <div class="container-fluid">
       {% block sidebar %}
       <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-      <!--<nav class="navbar navbar-toggleable-md navbar-default bg fixed-top">-->
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <img src="/static/images/logo.svg" height="3%" width="3%"/>
-          <!--<a class="navbar-brand" href="../static/images/logo.png">Logo</a>-->
-
+          
           <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
@@ -58,20 +40,15 @@
               <li class="nav-item">
                 <a class="nav-link disabled" href="#">Location</a>
               </li>
-              <!--<li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                  <a class="dropdown-item" href="/recipes_dashboard/add_recipe">Add recipe</a>
-                  <a class="dropdown-item" href="/recipes_dashboard/manage_recipe">Manage recipes</a>
-                  <a class="dropdown-item" href="#">Other</a>
-                </div>
-              </li>-->
             </ul>
             <li class="nav-item">
-              <a class="nav-link" href="/recipes_dashboard/signin/">Sign in</a>
+              <a class="nav-link" href="{% url 'signin' %}">Sign in</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/recipes_dashboard/signup/">Sign up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/accounts/logout/">Logout</a>
             </li>
             <form class="form-inline my-2 my-lg-0" action="{% url 'search_by_tag' %}" method="POST">
               {% csrf_token %}

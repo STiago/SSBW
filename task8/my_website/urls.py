@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from recipes_dashboard import views
+
 from django.urls import include
 from registration.backends.simple.views import RegistrationView#
 
@@ -24,8 +25,9 @@ class MyRegistrationView(RegistrationView):#
         return '/'#
 
 urlpatterns = [
-    path('', include('recipes_dashboard.urls')),
+    #path('', include('recipes_dashboard.urls')),
     path('admin/', admin.site.urls),
 	path('recipes_dashboard/', include('recipes_dashboard.urls')),
     path('accounts/', include('allauth.urls')),
+    path('', views.Home.as_view(), name='home'),
 ]
