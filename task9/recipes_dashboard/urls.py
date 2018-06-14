@@ -7,7 +7,6 @@ from django.contrib import admin
 from rest_framework import routers
 from .viewsets import RecipeViewSet
 
-
 router = routers.DefaultRouter()
 router.register('recipe', RecipeViewSet, 'recipe')
 
