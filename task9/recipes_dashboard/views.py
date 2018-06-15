@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from django.template import RequestContext
 from populate import *
 from . import models
@@ -108,7 +108,7 @@ def add_recipe(request):
             instance = Recipe(photo_file=request.FILES['image'], name=request.POST['name'], tags=model_tags)
             instance.save()
             logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - New recipe added.")
-            return redirect('home')
+            return redirect('/recipes_dashboard')
         else:
             logger.error(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' - Something went wrong and we could not add a new recipe.')
     else:
@@ -133,7 +133,7 @@ def update_recipe(request, id):
             last_form.photo_file = image
             last_form.save()
             logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - Recipe updated.")
-            return redirect('home')
+            return redirect('/recipes_dashboard')
         else:
             logger.error(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + ' - Something went wrong and we could not update it.')
     return render(request, '../templates/update_recipe.html', {'form': last_form})
@@ -143,7 +143,7 @@ def delete_recipe(request,id):
     instance = Recipe.objects.get(id=id)
     instance.delete()
     logger.info(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') + " - Recipe deleted.")
-    return redirect('home')
+    return redirect('/recipes_dashboard')
 
 
 ## Task 7 - Likes up and down
@@ -220,12 +220,12 @@ def signup(request):
         return render(request, '../templates/register.html')
 
 # Task 9
-from django.http import JsonResponse
 def recipes(request):
     if request.method == 'GET':
         recipes = Recipe.objects.all()
         serializer = RecipeSerializer(recipes, many=True)
-        return JsonResponse(dict(serializer.data), safe=True)
+        print(serializer.data)
+        return JsonResponse(serializer.data, safe=False)
 
     if request.method == 'POST':
         data = JSONParser().parse(request)
