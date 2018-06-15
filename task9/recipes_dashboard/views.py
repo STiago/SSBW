@@ -224,7 +224,6 @@ def recipes(request):
     if request.method == 'GET':
         recipes = Recipe.objects.all()
         serializer = RecipeSerializer(recipes, many=True)
-        print(serializer.data)
         return JsonResponse(serializer.data, safe=False)
 
     if request.method == 'POST':
