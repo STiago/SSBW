@@ -1,0 +1,121 @@
+Attaching to mongodb, practica1_web_1, practica1_nginx_1
+[36mmongodb    |[0m 2018-06-12T18:09:10.434+0000 I CONTROL  [initandlisten] MongoDB starting : pid=1 port=27017 dbpath=/data/db 64-bit host=f7f5df7c35ba
+[36mmongodb    |[0m 2018-06-12T18:09:10.434+0000 I CONTROL  [initandlisten] db version v3.6.3
+[36mmongodb    |[0m 2018-06-12T18:09:10.434+0000 I CONTROL  [initandlisten] git version: 9586e557d54ef70f9ca4b43c26892cd55257e1a5
+[36mmongodb    |[0m 2018-06-12T18:09:10.434+0000 I CONTROL  [initandlisten] OpenSSL version: LibreSSL 2.6.3
+[36mmongodb    |[0m 2018-06-12T18:09:10.434+0000 I CONTROL  [initandlisten] allocator: system
+[36mmongodb    |[0m 2018-06-12T18:09:10.434+0000 I CONTROL  [initandlisten] modules: none
+[36mmongodb    |[0m 2018-06-12T18:09:10.434+0000 I CONTROL  [initandlisten] build environment:
+[33mweb_1      |[0m Unhandled exception in thread started by <function check_errors.<locals>.wrapper at 0x7f0157faa8c8>
+[36mmongodb    |[0m 2018-06-12T18:09:10.434+0000 I CONTROL  [initandlisten]     distarch: x86_64
+[33mweb_1      |[0m Traceback (most recent call last):
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/pymongo/mongo_client.py", line 374, in __init__
+[33mweb_1      |[0m     self._ensure_connected(True)
+[36mmongodb    |[0m 2018-06-12T18:09:10.434+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/pymongo/mongo_client.py", line 939, in _ensure_connected
+[36mmongodb    |[0m 2018-06-12T18:09:10.434+0000 I CONTROL  [initandlisten] options: { net: { bindIp: "0.0.0.0" } }
+[36mmongodb    |[0m 2018-06-12T18:09:10.435+0000 I -        [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+[36mmongodb    |[0m 2018-06-12T18:09:10.435+0000 I STORAGE  [initandlisten] 
+[33mweb_1      |[0m     self.__ensure_member()
+[36mmongodb    |[0m 2018-06-12T18:09:10.435+0000 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/pymongo/mongo_client.py", line 813, in __ensure_member
+[36mmongodb    |[0m 2018-06-12T18:09:10.435+0000 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+[33mweb_1      |[0m     member, nodes = self.__find_node()
+[36mmongodb    |[0m 2018-06-12T18:09:10.435+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3423M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/pymongo/mongo_client.py", line 904, in __find_node
+[36mmongodb    |[0m 2018-06-12T18:09:10.908+0000 I STORAGE  [initandlisten] WiredTiger message [1528826950:908701][1:0x7f8f02dd7730], txn-recover: Main recovery loop: starting at 52/7040
+[33mweb_1      |[0m     raise AutoReconnect(', '.join(errors))
+[36mmongodb    |[0m 2018-06-12T18:09:11.239+0000 I STORAGE  [initandlisten] WiredTiger message [1528826951:239274][1:0x7f8f02dd7730], txn-recover: Recovering log 52 through 53
+[33mweb_1      |[0m pymongo.errors.AutoReconnect: [Errno 111] Connection refused
+[36mmongodb    |[0m 2018-06-12T18:09:11.462+0000 I STORAGE  [initandlisten] WiredTiger message [1528826951:462513][1:0x7f8f02dd7730], txn-recover: Recovering log 53 through 53
+[33mweb_1      |[0m 
+[36mmongodb    |[0m 2018-06-12T18:09:12.489+0000 I CONTROL  [initandlisten] 
+[33mweb_1      |[0m During handling of the above exception, another exception occurred:
+[36mmongodb    |[0m 2018-06-12T18:09:12.489+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+[33mweb_1      |[0m 
+[36mmongodb    |[0m 2018-06-12T18:09:12.490+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+[33mweb_1      |[0m Traceback (most recent call last):
+[36mmongodb    |[0m 2018-06-12T18:09:12.490+0000 I CONTROL  [initandlisten] 
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/mongoengine/connection.py", line 213, in get_connection
+[33mweb_1      |[0m     _connections[alias] = connection_class(**conn_settings)
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/pymongo/mongo_client.py", line 377, in __init__
+[36mmongodb    |[0m 2018-06-12T18:09:12.513+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+[33mweb_1      |[0m     raise ConnectionFailure(str(e))
+[36mmongodb    |[0m 2018-06-12T18:09:12.513+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+[33mweb_1      |[0m pymongo.errors.ConnectionFailure: [Errno 111] Connection refused
+[36mmongodb    |[0m 2018-06-12T18:09:13.209+0000 I NETWORK  [listener] connection accepted from 172.18.0.1:39464 #1 (1 connection now open)
+[36mmongodb    |[0m 2018-06-12T18:09:13.209+0000 I NETWORK  [listener] connection accepted from 172.18.0.1:39462 #2 (2 connections now open)
+[36mmongodb    |[0m 2018-06-12T18:09:13.209+0000 I NETWORK  [listener] connection accepted from 172.18.0.1:39468 #3 (3 connections now open)
+[36mmongodb    |[0m 2018-06-12T18:09:13.210+0000 I NETWORK  [listener] connection accepted from 172.18.0.1:39472 #4 (4 connections now open)
+[33mweb_1      |[0m 
+[36mmongodb    |[0m 2018-06-12T18:09:13.210+0000 I NETWORK  [listener] connection accepted from 172.18.0.1:39474 #5 (5 connections now open)
+[33mweb_1      |[0m During handling of the above exception, another exception occurred:
+[33mweb_1      |[0m 
+[33mweb_1      |[0m Traceback (most recent call last):
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/django/utils/autoreload.py", line 225, in wrapper
+[33mweb_1      |[0m     fn(*args, **kwargs)
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/django/core/management/commands/runserver.py", line 113, in inner_run
+[33mweb_1      |[0m     autoreload.raise_last_exception()
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/django/utils/autoreload.py", line 248, in raise_last_exception
+[33mweb_1      |[0m     raise _exception[1]
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/django/core/management/__init__.py", line 327, in execute
+[33mweb_1      |[0m     autoreload.check_errors(django.setup)()
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/django/utils/autoreload.py", line 225, in wrapper
+[33mweb_1      |[0m     fn(*args, **kwargs)
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/django/__init__.py", line 24, in setup
+[33mweb_1      |[0m     apps.populate(settings.INSTALLED_APPS)
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/django/apps/registry.py", line 112, in populate
+[33mweb_1      |[0m     app_config.import_models()
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/django/apps/config.py", line 198, in import_models
+[33mweb_1      |[0m     self.models_module = import_module(models_module_name)
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+[33mweb_1      |[0m     return _bootstrap._gcd_import(name[level:], package, level)
+[33mweb_1      |[0m   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+[33mweb_1      |[0m   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+[33mweb_1      |[0m   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+[33mweb_1      |[0m   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+[33mweb_1      |[0m   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+[33mweb_1      |[0m   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+[33mweb_1      |[0m   File "/code/recipes_dashboard/models.py", line 21, in <module>
+[33mweb_1      |[0m     connect('recipes',host='mongodb', port=27017)
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/mongoengine/connection.py", line 258, in connect
+[33mweb_1      |[0m     return get_connection(alias)
+[33mweb_1      |[0m   File "/usr/local/lib/python3.6/site-packages/mongoengine/connection.py", line 216, in get_connection
+[33mweb_1      |[0m     'Cannot connect to database %s :\n%s' % (alias, e))
+[33mweb_1      |[0m mongoengine.connection.MongoEngineConnectionError: Cannot connect to database default :
+[33mweb_1      |[0m [Errno 111] Connection refused
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:10:25 +0000] "GET /recipes_dashboard/signin/ HTTP/1.1" 301 185 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:10:47 +0000] "GET /recipes_dashboard/signin/ HTTP/1.1" 502 173 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 2018/06/12 18:10:47 [error] 9#9: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET /recipes_dashboard/signin/ HTTP/1.1", upstream: "http://172.18.0.3:8000/recipes_dashboard/signin/", host: "localhost"
+[32mnginx_1    |[0m 2018/06/12 18:10:47 [error] 9#9: *4 open() "/etc/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.18.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:10:47 +0000] "GET /favicon.ico HTTP/1.1" 404 169 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 2018/06/12 18:10:47 [error] 9#9: *4 open() "/etc/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.18.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:10:47 +0000] "GET /favicon.ico HTTP/1.1" 404 169 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:10:52 +0000] "GET /recipes_dashboard HTTP/1.1" 502 173 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 2018/06/12 18:10:52 [error] 9#9: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET /recipes_dashboard HTTP/1.1", upstream: "http://172.18.0.3:8000/recipes_dashboard", host: "localhost"
+[32mnginx_1    |[0m 2018/06/12 18:10:56 [error] 9#9: *4 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET /recipes_dashboard HTTP/1.1", upstream: "http://172.18.0.3:8000/recipes_dashboard", host: "localhost"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:10:56 +0000] "GET /recipes_dashboard HTTP/1.1" 502 173 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:12:32 +0000] "GET /admin/auth/user/ HTTP/1.1" 301 185 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 2018/06/12 18:12:32 [error] 9#9: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET /admin/auth/user/ HTTP/1.1", upstream: "http://172.18.0.3:8000/admin/auth/user/", host: "localhost"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:12:32 +0000] "GET /admin/auth/user/ HTTP/1.1" 502 173 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:15:53 +0000] "GET /admin HTTP/1.1" 502 173 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 2018/06/12 18:15:53 [error] 9#9: *11 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET /admin HTTP/1.1", upstream: "http://172.18.0.3:8000/admin", host: "localhost"
+[32mnginx_1    |[0m 2018/06/12 18:15:57 [error] 9#9: *11 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET /admin HTTP/1.1", upstream: "http://172.18.0.3:8000/admin", host: "localhost"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:15:57 +0000] "GET /admin HTTP/1.1" 502 173 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 2018/06/12 18:17:49 [error] 9#9: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET /admin HTTP/1.1", upstream: "http://172.18.0.3:8000/admin", host: "localhost"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:17:49 +0000] "GET /admin HTTP/1.1" 502 173 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 2018/06/12 18:18:20 [error] 9#9: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET /admin HTTP/1.1", upstream: "http://172.18.0.3:8000/admin", host: "localhost"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:18:20 +0000] "GET /admin HTTP/1.1" 502 173 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 2018/06/12 18:19:30 [error] 9#9: *15 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET /admin HTTP/1.1", upstream: "http://172.18.0.3:8000/admin", host: "localhost"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:19:30 +0000] "GET /admin HTTP/1.1" 502 173 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:26:13 +0000] "GET /recipes_dashboard/like_category/5abc1bbcba7dfd005e834081/ HTTP/1.1" 301 185 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[32mnginx_1    |[0m 2018/06/12 18:26:13 [error] 9#9: *21 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET /recipes_dashboard/like_category/5abc1bbcba7dfd005e834081/ HTTP/1.1", upstream: "http://172.18.0.3:8000/recipes_dashboard/like_category/5abc1bbcba7dfd005e834081/", host: "localhost"
+[32mnginx_1    |[0m 172.18.0.1 - - [12/Jun/2018:18:26:13 +0000] "GET /recipes_dashboard/like_category/5abc1bbcba7dfd005e834081/ HTTP/1.1" 502 173 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+[36mmongodb    |[0m 2018-06-12T18:36:03.206+0000 I CONTROL  [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+[36mmongodb    |[0m 2018-06-12T18:36:03.206+0000 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+[36mmongodb    |[0m 2018-06-12T18:36:03.206+0000 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+[36mmongodb    |[0m 2018-06-12T18:36:03.206+0000 I FTDC     [signalProcessingThread] Shutting down full-time diagnostic data capture
+[36mmongodb    |[0m 2018-06-12T18:36:03.209+0000 I STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
+[36mmongodb    |[0m 2018-06-12T18:36:03.780+0000 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+[36mmongodb    |[0m 2018-06-12T18:36:03.780+0000 I CONTROL  [signalProcessingThread] now exiting
+[36mmongodb    |[0m 2018-06-12T18:36:03.780+0000 I CONTROL  [signalProcessingThread] shutting down with code:0

@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+    web:
+        build: .
+        command: bash -c "/bin/sleep 5 && python3 manage.py runserver 0.0.0.0:8000"
+        volumes:
+            - .:/code
+        ports:
+            - "8000:8000"
+        links:
+            - mongodb
+        depends_on:
+            - mongodb
+        tty: true
+    mongodb:
+        image: mvertes/alpine-mongo
+        container_name: mongodb
+        ports:
+          - "27017:27017"
+        volumes:
+          - ./data/db:/data/db
+        tty: true
+    nginx:
+        image: nginx:alpine
+        ports:
+          - "80:80"
+          - "443:443"
+        volumes:
+          - ./conf:/etc/nginx/conf.d:ro
+          - ./cert:/etc/ssl/private:ro
+        depends_on:
+          - web
