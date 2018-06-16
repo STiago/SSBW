@@ -1,0 +1,10 @@
+Django==2.0.2
+mongoengine==0.15.0
+Pillow==5.0.0
+djangorestframework
+django-rest-framework-mongoengine
+django-cors-headers
+django-allauth
+django-bootstrap4==0.0.6
+django-serializer
+djangorestframework-jwt
