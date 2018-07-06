@@ -14,7 +14,7 @@ Software sistems based in web:
 
 - [jQuery](https://github.com/STiago/SSBW/tree/master/task7)
 
-- [Autentificación, autorización and logs](https://github.com/STiago/SSBW/tree/master/task8)
+- [Logs](https://github.com/STiago/SSBW/tree/master/task8)
 
 - [React](https://github.com/STiago/SSBW/tree/master/task10)
 
